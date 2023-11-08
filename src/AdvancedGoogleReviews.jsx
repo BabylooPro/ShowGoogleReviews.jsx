@@ -64,12 +64,15 @@ function AdvancedGoogleReviews() {
 					// TO GET PLACE ID VISIT: https://developers.google.com/maps/documentation/places/web-service/place-id
 					placeId: "ChIJLU7jZClu5kcR4PcOOO6p3I0", // THIS IS PLACE ID OF 'TOUR EIFFEL' IN PARIS, FRANCE, PUT YOUR PLACE ID OF THE PLACE TO FETCH REVIEWS
 					fields: ["reviews", "photos", "name"],
+					language: "all", //! WIP
+					//reviews_no_translations: true, //! WIP
+					//reviews_sort: "newest", //! WIP
 				},
-				// IF STATUS IS OK AND THERE ARE REVIEWS, SET REVIEWS & HANDLE ERROR
+
 				(place, status) => {
 					// IF STATUS IS OK AND THERE ARE REVIEWS, SET REVIEWS & HANDLE ERROR
 					if (status === google.maps.places.PlacesServiceStatus.OK) {
-						console.log(place);
+						// console.log(place); //! GIVEN PLACE OBJECT WITH INFO FIELD
 						if (place?.reviews) {
 							setReviews(place.reviews);
 						}
@@ -91,10 +94,13 @@ function AdvancedGoogleReviews() {
 		const testReview = [
 			{
 				id: "testReview1",
-				author_name: "Name Test",
-				rating: 3,
-				text: "This is a test Review for development without placeID.",
 				profile_photo_url: "profile_photo_url",
+				author_name: "Name Test",
+				language: "en",
+				rating: 3,
+				relative_time_description: "2 months ago",
+				time: "1620000000",
+				text: "This is a test Review for development without placeID.",
 			},
 		];
 
@@ -110,27 +116,49 @@ function AdvancedGoogleReviews() {
 			{placeName && <h1>{placeName}</h1>}
 			<hr />
 			{/* MAPPING REVIEWS TO DISPLAY EACH REVIEW IN A DIV ELEMENT */}
+			{/* https://developers.google.com/maps/documentation/places/web-service/details?hl=fr#PlaceReview */}
 			{reviews?.map((review) => (
 				<div key={review.id || review.time}>
+					{/* USER PROFILE PHOTO */}
+					{review.profile_photo_url && (
+						<img
+							src={review.profile_photo_url}
+							alt={`${review.author_name}'s profile`}
+							referrerPolicy="no-referrer" //? TO REMOVE REFERRER FROM IMAGE REQUEST
+						/>
+					)}
 					<p>
 						<strong>NAME : </strong>
 						{review.author_name}
+					</p>
+					<p>
+						<strong>ORIGINAL LANGUAGE : </strong>
+						{review.original_language} {/* WIP */}
+					</p>
+					<p>
+						<strong>LANGUAGE : </strong>
+						{review.language}
 					</p>
 					<p>
 						<strong>RATING : </strong>
 						{review.rating}
 					</p>
 					<p>
+						<strong>RELATIVE TIME DESCRIPTION : </strong>
+						{review.relative_time_description}
+					</p>
+					<p>
+						<strong>TIMESTAMP : </strong>
+						{review.time}
+					</p>
+					<p>
 						<strong>TEXT : </strong>
 						{review.text}
 					</p>
-					{/* USER PROFILE PHOTO */}
-					{review.profile_photo_url && (
-						<img
-							src={review.profile_photo_url}
-							alt={`${review.author_name}'s profile`}
-						/>
-					)}
+					<p>
+						<strong>TRANSLATED : </strong>
+						{review.translated} {/*! WIP */}
+					</p>
 					{/* PHOTOS ASSOCIATED WITH REVIEW */}
 					{review.photos &&
 						review.photos.map((photo, index) => (
