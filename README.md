@@ -68,7 +68,12 @@ The `GoogleReviews.jsx` file is the main component that uses the Google Places A
 
 - Do not forget to update `YOUR_API_KEY` with your actual API key and adjust the instructions as necessary to match the exact setup of your project.
 
-- Please be aware that access to review images may be restricted and result in 403 (Forbidden) errors. It may be necessary to check your Google API settings and ensure that all necessary permissions are properly configured.
+- Please be aware that access to review images may be restricted and result in 403 (Forbidden) errors. It may be necessary to check your Google API settings and ensure that all necessary permissions are properly configured or add `referrerPolicy="no-referrer"` to `<img/>`.
+
+- To leverage the full spectrum of Google API's capabilities and access more than the standard limit of five reviews, a subscription to Google's Premium Plan is required. This plan unlocks a wealth of additional data points, enriching the dataset at your disposal. However, it's important to consider the associated costs before opting in.
+
+- Business owners aiming to aggregate all customer feedback via the API will need to undergo a verification process. This is facilitated through the Google MyBusiness API, which offers a streamlined path to authentication and data retrieval. For a comprehensive guide to verification and Premium data access, please refer to the official [Google My Business API documentation](https://developers.google.com/my-business/).
+
 
 ## Support
 
