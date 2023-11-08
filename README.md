@@ -16,9 +16,15 @@ The `GoogleReviews.jsx` file is the main component that uses the Google Places A
 
 ## Features of AdvancedGoogleReviews.jsx
 
-- Shows the name of the location along with the reviews.
+- Displays the name of the location along with the corresponding reviews.
 - Manages request errors and HTTP status codes with specific error messages.
-- Offers a test review simulation for development without needing a place ID.
+- Offers a test review simulation for development purposes without the need for a place ID.
+- Allows for the simulation of reviews using static data when reviews are not available or in the absence of a valid place ID.
+- Supports handling reviews in multiple languages through the integration of the `language` option.
+- Includes a referrer policy for images to enhance user privacy.
+- Provides additional details about reviews such as the original language, the review text, and the relative time description.
+- [In Development] Manages translated reviews and offers options for sorting reviews.
+
 
 ## Configuration
 
